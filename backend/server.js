@@ -1,7 +1,8 @@
 const express=require("express");
 const app=express();
-app.use(express json);
-app.use(cors);
+const cors=require("cors");
+app.use(express.json());
+app.use(cors());
 app.listen(3000,function(){
     console.log("server running on 3000 ports")
 })
@@ -17,6 +18,19 @@ app.post("/push",function(req,res){
    res.send(arr);
 })
 
+
+app.update("/update",function(req,res){
+  const {index,value}=params.index;
+  arr[index]=value;
+  res.send(arr);
+})
+
+
+app.delete("/delete",function(req,res){
+  const{index}= params.index;
+  arr.splice(index,1);
+ res.send(arr);
+})
 
 
 
