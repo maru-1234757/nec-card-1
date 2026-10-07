@@ -1,36 +1,37 @@
-const express=require("express");
-const app=express();
-const cors=require("cors");
+const express = require("express");
+const cors = require("cors");
+const app = express();
+
 app.use(express.json());
 app.use(cors());
-app.listen(3000,function(){
-    console.log("server running on 3000 ports")
-})
 
-let arr=[1,2,3,4];
-app.get("/hello",function (req,res){
-    res.send(arr);
-})
+const arr = [1, 2, 3, 4];
 
-app.post("/push",function(req,res){
-    const (name)=req.body;
-    push.arr(name);
-   res.send(arr);
-})
+app.get("/hello", (req, res) => {
+  res.json(arr);
+});
 
+app.post("/push", (req, res) => {
+  const { name } = req.body;          
+  arr.push(name);                    
+  res.json(arr);
+});
 
-app.update("/update",function(req,res){
-  const {index,value}=params.index;
-  arr[index]=value;
-  res.send(arr);
-})
+app.put("/update", (req, res) => {   
+  const { index, value } = req.params;
+  arr[index] = value;
+  res.json(arr);
+});
 
+app.delete("/delete", (req, res) => {
+  const { index } = req.params;
+  arr.splice(index, 1);
+  res.json(arr);
+});
 
-app.delete("/delete",function(req,res){
-  const{index}= params.index;
-  arr.splice(index,1);
- res.send(arr);
-})
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});   
 
 
 
